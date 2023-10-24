@@ -2,21 +2,87 @@
 <html>
 <head>
     <title>Calculadora de Stretching Blender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #00AC1F;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0053a0;
+        }
+
+        p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        span.result {
+            color: #007acc;
+        }
+    </style>
 </head>
 <body>
     <h1>Calculadora de Stretching Blender</h1>
+	
+	<br><p><center><b>OBSERVAÇÕES</b>: ESTA CALCULADORA</p> É PARA TIMELINE'S CRIADAS EM <b>30FPS</b></center></br>
 
-    <label for="duracao">Duração da sua Animação (segundos):</label>
-    <input type="number" id="duracao" min="0" step="0.01"><br>
+    <div class="container">
+        <label for="duracao">Duração da sua Animação (segundos):</label>
+        <input type="number" id="duracao" min="0" step="0.01"><br>
 
-    <label for="framerate">Frame Rate Desejado:</label>
-    <input type="number" id="framerate" min="0"><br>
+        <label for="framerate">Frame Rate Desejado:</label>
+        <input type="number" id="framerate" min="0"><br>
 
-    <button onclick="calcularFrames()">Calcular</button>
+        <button onclick="calcularFrames()">Calcular</button>
 
-    <p>Resultado:</p>
-    <p>Número de Frames Necessários: <span id="resultadoFrames"></span></p>
-    <p>Parâmetro de Stetching: <span id="resultadoStretching"></span><span>00</span></p>
+        <p>Resultado:</p>
+        <p>Número de Frames Necessários: <span class="result" id="resultadoFrames"></span></p>
+        <p>Parâmetro de Stetching: <span class="result" id="resultadoStretching"></span><span>00</span></p>
+		
+    </div>
 
     <script>
         function calcularFrames() {
@@ -32,7 +98,7 @@
             const stretching = framerate / 30; // Assumindo um frame rate original de 30fps
 
             document.getElementById('resultadoFrames').textContent = numeroFramesNecessarios;
-            document.getElementById('resultadoStretching').textContent = stretching;
+            document.getElementById('resultadoStretching').textContent = stretching.toFixed(0);
         }
     </script>
 </body>
