@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Stretching Blender</title>
+</head>
+<body>
+    <h1>Calculadora de Stretching Blender</h1>
+
+    <label for="duracao">Duração da sua Animação (segundos):</label>
+    <input type="number" id="duracao" min="0" step="0.01"><br>
+
+    <label for="framerate">Frame Rate Desejado:</label>
+    <input type="number" id="framerate" min="0"><br>
+
+    <button onclick="calcularFrames()">Calcular</button>
+
+    <p>Resultado:</p>
+    <p>Número de Frames Necessários: <span id="resultadoFrames"></span></p>
+    <p>Parâmetro de Stetching: <span id="resultadoStretching"></span><span>00</span></p>
+
+    <script>
+        function calcularFrames() {
+            const duracao = parseFloat(document.getElementById('duracao').value);
+            const framerate = parseFloat(document.getElementById('framerate').value);
+
+            if (isNaN(duracao) || isNaN(framerate) || duracao <= 0 || framerate <= 0) {
+                alert("Por favor, insira valores válidos para duração e frame rate.");
+                return;
+            }
+
+            const numeroFramesNecessarios = duracao * framerate;
+            const stretching = framerate / 30; // Assumindo um frame rate original de 30fps
+
+            document.getElementById('resultadoFrames').textContent = numeroFramesNecessarios;
+            document.getElementById('resultadoStretching').textContent = stretching;
+        }
+    </script>
+</body>
+</html>
